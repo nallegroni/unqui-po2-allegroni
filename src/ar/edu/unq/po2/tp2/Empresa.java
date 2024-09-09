@@ -68,10 +68,14 @@ public class Empresa {
 	}
 	
 	private void generarReciboPara(Empleado e) {
-		ReciboDeHaberes reciboDeHaberes = new ReciboDeHaberes(e);
+		ReciboDeHaberes recibo = new ReciboDeHaberes(e);
+		this.desgloceConceptos(recibo, e);
+		recibosDeHaberes.add(recibo);
+	}
+	
+	private void desgloceConceptos(ReciboDeHaberes recibo, Empleado e) {
 		for (Concepto c : e.conceptos()) {
-			reciboDeHaberes.agregarConcepto(c);
+			recibo.agregarConcepto(c);
 		}
-		recibosDeHaberes.add(reciboDeHaberes);
 	}
 }
