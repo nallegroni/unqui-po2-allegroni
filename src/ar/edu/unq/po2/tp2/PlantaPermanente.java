@@ -1,6 +1,7 @@
 package ar.edu.unq.po2.tp2;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class PlantaPermanente extends Empleado {
 
@@ -8,9 +9,10 @@ public class PlantaPermanente extends Empleado {
 	private int añoAntiguedad;
 	
 	public PlantaPermanente(String nombre, String direccion, String estadoCivil, LocalDate fechaNacimiento,
-			double sueldoBasico) {
+			double sueldoBasico, int cantidadHijos, int añoAntiguedad) {
 		super(nombre, direccion, estadoCivil, fechaNacimiento, sueldoBasico);
-		// TODO Auto-generated constructor stub
+		this.cantidadHijos = cantidadHijos;
+		this.añoAntiguedad = añoAntiguedad;
 	}
 
 	public int getCantidadHijos() {
@@ -31,7 +33,6 @@ public class PlantaPermanente extends Empleado {
 
 	@Override
 	double sueldoBruto() {
-		// TODO Auto-generated method stub
 		return (this.getSueldoBasico() + this.salarioFamiliar())  ;
 	}
 	
@@ -45,11 +46,7 @@ public class PlantaPermanente extends Empleado {
 	}
 
 	public double asignacionPorConyuge() {
-		 if (this.getEstadoCivil() == "Casado") {
-			 	return 100;
-			} else {
-				return 0; 
-			}
+		 return (this.getEstadoCivil() == "Casado") ? 100 : 0; 
 	}
 	
 	public double aportePorAntiguedad() {
@@ -58,16 +55,33 @@ public class PlantaPermanente extends Empleado {
 	}
 	
 	@Override
-	double retenciones() {
-		// TODO Auto-generated method stub
+	public double retenciones() {
 		return this.obraSocial() + this.aportesJubilatorios();
 	}
-
+	
 	public double obraSocial() {
-		return (this.sueldoBruto() * 10 / 100) + (20 * getCantidadHijos()) ;
+		return super.obraSocial() + (20 * getCantidadHijos()) ;
 	}
 	
 	public double aportesJubilatorios() {
-		return this.sueldoBruto() * 15 / 100;
+		return this.sueldoBruto() * 0.15;
 	}
+
+	@Override
+	public ArrayList<Concepto> conceptosSueldoBruto() {
+		ArrayList<Concepto> conceptos = new ArrayList<>();
+		conceptos.add(new Concepto("Sueldo Basico", this.getSueldoBasico()));
+		conceptos.add(new Concepto("Asignación por hijo", this.asignacionPorHijo()));
+		conceptos.add(new Concepto("Asignación por cónyuge", this.asignacionPorConyuge()));
+		conceptos.add(new Concepto("Aporte por antiguedad", this.aportePorAntiguedad()));
+		return conceptos;
+	}
+
+	@Override
+	public ArrayList<Concepto> conceptosRetenciones(){
+		ArrayList<Concepto> conceptos = new ArrayList<Concepto>();
+		conceptos.add(new Concepto("Obra Social", this.obraSocial()));
+		conceptos.add(new Concepto("Aportes Jubilatorios", this.aportesJubilatorios()));
+		return conceptos;
+	};
 }

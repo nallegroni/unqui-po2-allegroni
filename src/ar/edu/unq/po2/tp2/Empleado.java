@@ -1,6 +1,7 @@
 package ar.edu.unq.po2.tp2;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 abstract class Empleado {
 	
@@ -51,7 +52,6 @@ abstract class Empleado {
 	}
 
 	public Empleado(String nombre, String direccion, String estadoCivil, LocalDate fechaNacimiento, double sueldoBasico) {
-		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.estadoCivil = estadoCivil;
@@ -59,7 +59,7 @@ abstract class Empleado {
 		this.sueldoBasico = sueldoBasico;
 	}
 
-	public int getEdad(LocalDate fechaNacimiento) {
+	public int getEdad() {
 		LocalDate hoy = LocalDate.now();
 		
 		return (hoy.getYear() - fechaNacimiento.getYear());
@@ -68,8 +68,23 @@ abstract class Empleado {
 	abstract double sueldoBruto();
 
 	abstract double retenciones();
+	
+	protected double obraSocial() {
+		return this.sueldoBruto() * 0.10;
+	}
 
 	public double sueldoNeto() {
 		return (this.sueldoBruto() - this.retenciones());
+	}
+	
+	public abstract ArrayList<Concepto> conceptosSueldoBruto();
+	
+	public abstract ArrayList<Concepto> conceptosRetenciones();
+	
+	public ArrayList<Concepto> conceptos() {
+		ArrayList<Concepto> conceptos = new ArrayList<Concepto>();
+		conceptos.addAll(this.conceptosSueldoBruto());
+		conceptos.addAll(this.conceptosRetenciones());
+		return conceptos;
 	}
 }
