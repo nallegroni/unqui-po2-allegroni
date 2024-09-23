@@ -13,9 +13,9 @@ class CounterTestCase {
 	
 	@BeforeEach
 	public void setUp() throws Exception {
-		//Se crea el contador
+		// Se crea el contador.
 		counter = new Counter();
-		//Se agregan los numeros. Un solo par y nueve impares
+		// Se agregan los numeros. Un solo par y nueve impares.
 		counter.addNumber(1);
 		counter.addNumber(3);
 		counter.addNumber(5);
@@ -31,7 +31,19 @@ class CounterTestCase {
 	@Test
 	void testEvenNumbers() {
 		int amount = counter.getEvenOcurrences();
-		assertEquals(amount, 1);
+		assertEquals(1, amount, "There should be 1 even number");
 	}
 
+	@Test
+	void testOddNumbers() {
+		int amount = counter.getOddOcurrences();
+		assertEquals(9, amount, "There should be 9 odd numbers");
+	}
+	
+	@Test
+	void testMultiple() {
+		int multiples = counter.getMultipleOf(2);
+		assertEquals(1, multiples, "There should be 1 multiple");
+	}
+	
 }
