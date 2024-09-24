@@ -12,11 +12,11 @@ public class Disassembler {
 		return numberWithMoreEvens;
 	}
 	
-	private int moreEvensBetween(int n1, int n2) {
-		if (evenDigitsIn(n1) > evenDigitsIn(n2)) {
-			return n1;
+	private int moreEvensBetween(int x, int y) {
+		if (evenDigitsIn(x) > evenDigitsIn(y)) {
+			return x;
 		} else {
-			return n2;
+			return y;
 		}
 	}
 	
