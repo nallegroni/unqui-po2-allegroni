@@ -17,25 +17,23 @@ public class EmpleadoContratado extends Empleado {
 	}
 
 	@Override
-	double calcularSueldoBruto() {
+	protected double calcularSueldoBruto() {
 		return sueldoBasico;
 	}
 
 	@Override
-	double calcularRetenciones() {
+	protected double calcularRetenciones() {
 		return retencionPorGastosAdministrativosContractuales;
 	}
 
 	@Override
-	void desgloceConceptosSueldoBruto(ReciboDeHaberes recibo, Empleado e) {
-		// TODO Auto-generated method stub
-
+	protected void desgloceConceptosSueldoBruto(ReciboDeHaberes recibo, Empleado e) {
+        recibo.agregarConcepto(new Concepto("Sueldo Basico", sueldoBasico));
 	}
 
 	@Override
-	void desgloceConceptosRetenciones(ReciboDeHaberes recibo, Empleado e) {
-		// TODO Auto-generated method stub
-
+	protected void desgloceConceptosRetenciones(ReciboDeHaberes recibo, Empleado e) {
+		recibo.agregarConcepto(new Concepto("Gastos Administrativos Contractuales", retencionPorGastosAdministrativosContractuales));
 	}
 
 }

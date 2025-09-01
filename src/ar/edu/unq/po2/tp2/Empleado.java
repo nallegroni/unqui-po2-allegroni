@@ -39,14 +39,14 @@ public abstract class Empleado {
 		return Period.between(fechaNacimiento, LocalDate.now()).getYears();
 	}
 	
-	abstract double calcularSueldoBruto();
+	protected abstract double calcularSueldoBruto();
 	
-	abstract double calcularRetenciones();
+	protected abstract double calcularRetenciones();
 	
 	public double calcularSueldoNeto() {
 		return calcularSueldoBruto() - calcularRetenciones();
 	}
 	
-	abstract void desgloceConceptosSueldoBruto(ReciboDeHaberes recibo, Empleado e);
-	abstract void desgloceConceptosRetenciones(ReciboDeHaberes recibo, Empleado e);
+	protected abstract void desgloceConceptosSueldoBruto(ReciboDeHaberes recibo, Empleado e);
+	protected abstract void desgloceConceptosRetenciones(ReciboDeHaberes recibo, Empleado e);
 }

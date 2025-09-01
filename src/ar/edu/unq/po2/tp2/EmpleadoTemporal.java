@@ -18,35 +18,34 @@ public class EmpleadoTemporal extends Empleado {
 	}
 
 	@Override
-	double calcularSueldoBruto() {
+	protected double calcularSueldoBruto() {
 		double pagoHorasExtras = horasExtras * pagoPorHoraExtra;
 				
 		return sueldoBasico + pagoHorasExtras;
 	}
 
 	@Override
-	double calcularRetenciones() {
+	protected double calcularRetenciones() {
 		double obraSocial = (0.10 * calcularSueldoBruto()) + (esMayorDe_Años(50) ? 25 : 0);
 		double aportesJubilatorios = (0.10 * calcularSueldoBruto()) + (horasExtras * retencionPorHoraExtra);
 		
 		return obraSocial + aportesJubilatorios;
 	}
 	
-	boolean esMayorDe_Años(int edad) {
+	private boolean esMayorDe_Años(int edad) {
 		return calcularEdad(fechaNacimiento) > edad;
 	}
 	
 	@Override
-	public void desgloceConceptosSueldoBruto(ReciboDeHaberes recibo, Empleado e) {
+	protected void desgloceConceptosSueldoBruto(ReciboDeHaberes recibo, Empleado e) {
 		double pagoHorasExtras = horasExtras * pagoPorHoraExtra;    
 		
         recibo.agregarConcepto(new Concepto("Sueldo Basico", sueldoBasico));
         recibo.agregarConcepto(new Concepto("Horas Extras", pagoHorasExtras));
-        
 	}
 	
 	@Override
-	public void desgloceConceptosRetenciones(ReciboDeHaberes recibo, Empleado e) {
+	protected void desgloceConceptosRetenciones(ReciboDeHaberes recibo, Empleado e) {
 		double obraSocial = (0.10 * calcularSueldoBruto()) + (esMayorDe_Años(50) ? 25 : 0);
 		double aportesJubilatorios = (0.10 * calcularSueldoBruto()) + (horasExtras * retencionPorHoraExtra);
 		
