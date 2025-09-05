@@ -9,6 +9,10 @@ public class Empresa {
 	private HashSet<Empleado> empleados;
 	private HashSet<ReciboDeHaberes> recibos;
 	
+	protected HashSet<ReciboDeHaberes> getRecibos() {
+		return recibos;
+	}
+
 	public Empresa(String nombre, String cuit) {
         this.nombre = nombre;
         this.cuit = cuit;
