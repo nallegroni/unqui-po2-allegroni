@@ -1,7 +1,8 @@
-package ar.edu.unq.po2.tp4;
+package ar.edu.unq.po2.tp4.Supermercado;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
