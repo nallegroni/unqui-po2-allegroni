@@ -1,14 +1,12 @@
 package ar.edu.unq.po2.tp4.ImpuestoAlTrabajador;
 
-import java.time.Month;
-
 public class Ingreso {
 	
-	private Month mes;
+	private int mes;
 	private String concepto;
 	protected double monto;
 	
-	public Ingreso(Month mes, String concepto, double monto) {
+	public Ingreso(int mes, String concepto, double monto) {
 		this.mes = mes;
 		this.concepto = concepto;
 		this.monto = monto;
@@ -22,7 +20,7 @@ public class Ingreso {
 		return monto;
 	}
 
-	public Month getMes() {
+	public int getMes() {
 		return mes;
 	}
 

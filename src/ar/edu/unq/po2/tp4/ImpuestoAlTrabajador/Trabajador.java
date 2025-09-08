@@ -6,7 +6,7 @@ public class Trabajador {
 	
 	private ArrayList<Ingreso> ingresos;
 	
-	public Trabajador(ArrayList<Ingreso> ingresos) {
+	public Trabajador() {
 		this.ingresos = new ArrayList<>();
 	}
 	
@@ -18,16 +18,20 @@ public class Trabajador {
 		return totalPercibido;
 	}
 
-	private double getMontoImponible() {
-		double montoImponible = 0;
+	protected double getTotalMontoImponible() {
+		double totalMontoImponible = 0;
 		for (Ingreso ingreso : ingresos) {
-			montoImponible += ingreso.getMontoImponible();
+			totalMontoImponible += ingreso.getMontoImponible();
 		}
-		return montoImponible;
+		return totalMontoImponible;
 	}
 	
-	private double getImpuestoAPagar() {
-		return getMontoImponible() * 0.2;
+	protected double getImpuestoAPagar() {
+		return getTotalMontoImponible() * 0.2;
+	}
+	
+	protected void addIngreso(Ingreso ingreso) {
+		ingresos.add(ingreso);
 	}
 
 	public ArrayList<Ingreso> getIngresos() {
