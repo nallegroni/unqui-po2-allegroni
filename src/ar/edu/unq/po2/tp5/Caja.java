@@ -5,29 +5,43 @@ import java.util.List;
 
 public class Caja {
 	
-	private List<Producto> productos;
-	private double montoAPagar;
+	private List<Cobrable> items;
+	private double montoTotalAPagar;
 	
 	public Caja() {
-		this.productos = new ArrayList<>();
-		this.montoAPagar = 0;
+		this.items = new ArrayList<>();
+		this.montoTotalAPagar = 0;
+	}
+	
+	public void registrar(Cobrable c) {
+		if (c instanceof Producto p) {
+			registrarProducto(p);
+		} else if (c instanceof Factura f) {
+			registrarFactura(f);
+		}
+	}
+	
+	public void registrarFactura(Factura f) {
+		f.notificarAgencia();
+		montoTotalAPagar += f.getMontoAPagar();
+		items.add(f);
 	}
 	
 	public void registrarProducto(Producto p) {
 		if (p.getStock() <= 0) {
 			throw new IllegalStateException("No hay stock disponible de " + p.getNombre());
 		}
-		montoAPagar += p.getPrecioFinal();
+		montoTotalAPagar += p.getMontoAPagar();
 		p.decrementarStock();
-		productos.add(p);
+		items.add(p);
 		
 	}
 	
-	public List<Producto> getProductos() {
-		return productos;
+	public List<Cobrable> getItems() {
+		return items;
 	}
 	
-	public double getMontoAPagar() {
-		return montoAPagar;
+	public double getMontoTotalAPagar() {
+		return montoTotalAPagar;
 	}
 }

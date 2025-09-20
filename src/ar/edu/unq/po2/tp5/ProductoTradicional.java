@@ -7,7 +7,7 @@ public class ProductoTradicional extends Producto {
 	}
 
 	@Override
-	public double getPrecioFinal() {
+	public double getMontoAPagar() {
 		return getPrecioBase();
 	}
 

@@ -1,6 +1,6 @@
 package ar.edu.unq.po2.tp5;
 
-public abstract class Producto {
+public abstract class Producto implements Cobrable {
 	
 	private String nombre;
 	private double precioBase;
@@ -31,5 +31,4 @@ public abstract class Producto {
 		stock--;
 	}
 	
-	public abstract double getPrecioFinal();
 }
