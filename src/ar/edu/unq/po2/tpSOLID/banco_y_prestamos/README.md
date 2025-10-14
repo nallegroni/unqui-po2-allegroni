@@ -37,4 +37,4 @@ A continuación, se muestra el resultado final tras aplicar las soluciones.
 
 ### a. Nuevo Diagrama de Clases
 
-![Diagrama de Clases Solucionado](UML_TPSolid_Creditos_Solucion_Allegroni)
+![Diagrama de Clases Solucionado](UML_TPSolid_Creditos_Solucion_Allegroni.svg)
